@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+ import React, { useState, useEffect, useRef } from "react";
 import { BsArrowDown, BsPlusCircleFill } from "react-icons/bs";
 import { RiCheckboxCircleLine } from "react-icons/ri";
+ 
 
 function TodoForm(props) {
+ 
   const [input, setInput] = useState(props.edit ? props.edit.value : "");
   const [showDescription, setShowDescription] = useState(false);
   const [description, setDescription] = useState(
@@ -29,7 +31,7 @@ function TodoForm(props) {
 
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
-      text: input,
+      title: input,
       description,
       isDone: false,
       showDescription: false,
@@ -40,13 +42,14 @@ function TodoForm(props) {
 
   return (
     <form onSubmit={handleSubmit} className="todo-form">
+
       {props.edit ? (
         <div className="todo-form--update">
           <input
             placeholder="Update your item"
             value={input}
             onChange={handleChange}
-            name="text"
+            name="title"
             ref={inputRef}
             className="todo-input edit todo-description"
           />
@@ -65,10 +68,10 @@ function TodoForm(props) {
       ) : (
         <>
           <input
-            placeholder="Add a todo"
+            placeholder="You can add your title task here!"
             value={input}
             onChange={handleChange}
-            name="text"
+            name="title"
             className="todo-input"
             ref={inputRef}
           />
@@ -80,7 +83,7 @@ function TodoForm(props) {
           </button>
           {showDescription && (
             <textarea
-              placeholder="Description"
+              placeholder="Add your Description here:"
               value={description}
               onChange={handleDescriptionChange}
               name="description"
